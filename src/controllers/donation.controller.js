@@ -32,3 +32,4 @@ export const getAllDonation = () => {
 export const getDonationsDonor = (idDonor) => {
     return listDonation.filter(donation => donation.id_donor == idDonor)
 }
+ 
