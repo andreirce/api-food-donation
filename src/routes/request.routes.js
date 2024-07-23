@@ -4,21 +4,10 @@ import { createRequest, getAllRequest, getRequestUser } from "../controllers/req
 const requestRouter = Router()
 
 
-requestRouter.post("/request", (req, res) => {
-    const { id_user, type_food, quantity } = req.body
-    let request = createRequest(id_user, type_food, quantity)
-    res.status(201).json({request})
-})
+requestRouter.post("/request", createRequest)
 
-requestRouter.get("/request", (req, res) => {
-    let getRequest = getAllRequest()
-    res.status(200).json({getRequest})
-})
+requestRouter.get("/request", getAllRequest)
 
-requestRouter.get("/request/:id", (req, res) => {
-    const { id } = req.params
-    let getRequestUsers = getRequestUser(id)
-    res.status(200).json({getRequestUsers})
-})
+requestRouter.get("/request/:id", getRequestUser)
 
 export { requestRouter }

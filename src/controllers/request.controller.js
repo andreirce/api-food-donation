@@ -3,21 +3,24 @@ import { Request } from "../models/Request.model.js"
 
 let listRequest = []
 
-export const createRequest = (id_user, type_food, quantity) => {
+export const createRequest = (req, res) => {
+    const { id_user, type_food, quantity } = req.body
     const newRequest = new Request(id_user, type_food, quantity)
     listRequest.push(newRequest)
-    return newRequest
+    return res.status(201).json({newRequest})
 }
 
-export const getAllRequest = () => {
-    return listRequest
+export const getAllRequest = (req, res) => {
+    return res.status(200).json({listRequest})
 }
 
-export const getRequestUser = (idUser) => {
-    return listRequest.filter(request => request.id_user == idUser)
+export const getRequestUser = (req, res) => {
+    const { id } = req.params
+    let getRequestUsers = listRequest.filter(request => request.id_user == id)
+    return res.status(200).json({getRequestUsers})
 }
 
 export const getRequestById = (idRequest) => {
-    return listRequest.find(request => request.id === idRequest)
+    return listRequest.find(request => request.id == idRequest)
 }
 
